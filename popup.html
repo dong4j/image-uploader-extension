@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Image Uploader</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .status {
+      margin-top: 8px;
+      padding: 8px;
+      border-radius: 4px;
+    }
+    .success {
+      background-color: #e6ffe6;
+      color: #006600;
+    }
+    .error {
+      background-color: #ffe6e6;
+      color: #660000;
+    }
+    .button {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="text-center">
+    <h2 data-i18n="popup_title" class="text-xl font-bold mb-4 text-gray-800">Image Uploader</h2>
+    <p data-i18n="popup_description" class="text-gray-600 mb-4">Right-click on any image and select "Upload Image" to upload it to your configured service.</p>
+    <button id="openSettings" class="button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-i18n="open_settings">Open Settings</button>
+  </div>
+  <div id="status" class="status" style="display: none;"></div>
+  <script src="i18n.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

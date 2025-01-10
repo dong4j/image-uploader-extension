@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "图片上传器",
+    "description": "扩展名称"
+  },
+  "extDescription": {
+    "message": "将图片上传到指定的图片托管服务，支持压缩和格式转换选项",
+    "description": "扩展描述"
+  }
+}

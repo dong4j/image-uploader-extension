@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Image Uploader Settings</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      padding: 3rem 4rem;
+      margin-bottom: 2rem;
+    }
+    .form-group {
+      margin-bottom: 3rem;
+    }
+    .form-label {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .form-input {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.75rem;
+      font-size: 1.125rem;
+      transition: all 0.2s;
+      font-family: 'Consolas', 'Monaco', monospace;
+      letter-spacing: 0.5px;
+      min-height: 3.5rem;
+    }
+    .form-input::placeholder {
+      color: #9ca3af;
+      opacity: 0.7;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+    .help-text {
+      color: #6b7280;
+      margin-top: 0.75rem;
+      line-height: 1.6;
+    }
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+    }
+    .checkbox {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 0.375rem;
+      border: 2.5px solid #e5e7eb;
+      margin-right: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .checkbox:checked {
+      background-color: #3b82f6;
+      border-color: #3b82f6;
+      transform: scale(1.05);
+    }
+    .checkbox:hover {
+      border-color: #3b82f6;
+    }
+    .range-wrapper {
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .range-input {
+      flex: 1;
+      height: 0.75rem;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0.375rem;
+      outline: none;
+      cursor: pointer;
+      background: #e5e7eb;
+      transition: background 0.2s ease;
+    }
+    .range-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: #3b82f6;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: -0.375rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+    .range-input::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
+    .range-input::-moz-range-thumb {
+      width: 1.5rem;
+      height: 1.5rem;
+      background: #3b82f6;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .range-input::-moz-range-thumb:hover {
+      transform: scale(1.1);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
+    .range-input::-moz-range-progress {
+      height: 0.75rem;
+      background-color: #3b82f6;
+      border-radius: 0.375rem;
+    }
+    .range-value {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #3b82f6;
+      min-width: 4rem;
+      text-align: right;
+    }
+    .btn {
+      background-color: #3b82f6;
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      font-size: 1.25rem;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(59, 130, 246, 0.25);
+    }
+    .btn:hover {
+      background-color: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(59, 130, 246, 0.3);
+    }
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid #e5e7eb;
+    }
+    .status {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      font-weight: 500;
+      font-size: 1.125rem;
+    }
+    .status.success {
+      background-color: #ecfdf5;
+      color: #047857;
+    }
+    .status.error {
+      background-color: #fef2f2;
+      color: #b91c1c;
+    }
+    .checkbox-text {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1 class="text-5xl font-bold mb-12 text-center text-gray-900" data-i18n="settings_title">Image Uploader Settings</h1>
+      
+      <form id="settingsForm">
+        <div class="form-group">
+          <label class="form-label" for="apiUrl" data-i18n="api_url_label">
+            Upload API URL *
+          </label>
+          <input class="form-input" 
+                 id="apiUrl" 
+                 type="url" 
+                 required 
+                 placeholder="https://your-api-endpoint.com/upload">
+          <p class="help-text" data-i18n="api_url_help">
+            Enter the full URL of your image upload API endpoint. The API should accept POST requests with multipart/form-data and expect an 'image' field containing the file.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <h2 class="section-title" data-i18n="image_processing_title">Image Processing</h2>
+          
+          <div class="mb-8">
+            <label class="checkbox-wrapper">
+              <input type="checkbox" id="enableCompression" class="checkbox">
+              <span class="checkbox-text" data-i18n="enable_compression">Enable Image Compression</span>
+            </label>
+            <p class="help-text" data-i18n="compression_help">
+              Compress images before uploading to reduce file size. Recommended for large images or slow networks.
+            </p>
+          </div>
+
+          <div class="mb-8">
+            <label class="form-label" for="compressionQuality" data-i18n="quality_label">
+              Compression Quality
+            </label>
+            <div class="range-wrapper">
+              <input type="range" id="compressionQuality" class="range-input" min="1" max="100" value="80">
+              <span id="qualityValue" class="range-value">80%</span>
+            </div>
+            <p class="help-text" data-i18n="quality_help">
+              Higher values mean better quality but larger file size. 80-90 is recommended for most cases.
+            </p>
+          </div>
+
+          <div class="mb-8">
+            <label class="checkbox-wrapper">
+              <input type="checkbox" id="convertToWebp" class="checkbox">
+              <span class="checkbox-text" data-i18n="convert_webp">Convert to WebP format</span>
+            </label>
+            <p class="help-text" data-i18n="webp_help">
+              WebP offers better compression than JPEG while maintaining similar quality. Make sure your server and target platform support WebP.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <button class="btn" 
+                  type="submit"
+                  data-i18n="save_settings">
+            Save Settings
+          </button>
+        </div>
+      </form>
+
+      <div id="status" class="status hidden"></div>
+    </div>
+  </div>
+  <script src="i18n.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
