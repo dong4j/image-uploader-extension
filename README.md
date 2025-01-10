@@ -1,5 +1,7 @@
 # Image Uploader Extension
 
+![alt text](./banner.png)
+
 A Chrome extension for quick and easy image uploading with compression and format conversion support.
 
 [English](#english) | [中文](#chinese)
